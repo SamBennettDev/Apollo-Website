@@ -2,6 +2,9 @@ import { useAuth } from "./auth";
 
 export const login = (email: string, password: string) => {
   // Modify this to use API call to get user
+  email = email;
+  password = password;
+
   const user = {
     id: "1",
     name: "John Doe",
