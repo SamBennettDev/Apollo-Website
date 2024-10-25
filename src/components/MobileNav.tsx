@@ -19,7 +19,7 @@ export function MobileNav() {
         style={{ height: `${navbarHeight}px` }}
       >
         <div
-          className={`flex items-center transition-all duration-300 z-[100]`}
+          className={`flex items-center transition-all duration-300 z-[101]`}
           style={{
             transform: isOpen
               ? `translateX(${sideMenuWidth}vw)`
@@ -34,82 +34,67 @@ export function MobileNav() {
           >
             <div className="grid justify-items-center gap-[5px]">
               <span
-                className={`h-[2.5px] w-5 rounded-full bg-foreground transition duration-300  ${
-                  isOpen ? "rotate-45 translate-y-[7.5px]" : ""
+                className={`h-[2px] w-5 rounded-full bg-foreground transition duration-300  ${
+                  isOpen ? "rotate-45 translate-y-[7px]" : ""
                 }`}
               ></span>
               <span
-                className={`h-[2.5px] w-5 rounded-full bg-foreground ${
+                className={`h-[2px] w-5 rounded-full bg-foreground ${
                   isOpen ? "scale-x-0 transition" : ""
                 }`}
               ></span>
               <span
-                className={`h-[2.5px] w-5 rounded-full bg-foreground transition duration-300  ${
-                  isOpen ? "-rotate-45 -translate-y-[7.5px]" : ""
+                className={`h-[2px] w-5 rounded-full bg-foreground transition duration-300  ${
+                  isOpen ? "-rotate-45 -translate-y-[7px]" : ""
                 }`}
               ></span>
             </div>
-            {/* <FontAwesomeIcon
-              icon={isOpen ? faClose : faBars}
-              className={`h-5 w-5 transition-transform duration-300 ease-in-out`}
-            /> */}
           </button>
         </div>
-
-        {/* Blur Background */}
-        <div
-          className={`absolute h-screen bg-gradient-to-r from-card via-card z-[99] top-0 left-0 
-    transition-transform transition-opacity duration-300 
-    ${isOpen ? `opacity-100 ` : "opacity-0 pointer-events-none"}`}
-          style={{
-            width: `calc(100vw - ${sideMenuWidth}vw)`,
-            transform: isOpen
-              ? `translateX(${sideMenuWidth}vw)`
-              : "translateX(0)",
-          }}
-        />
 
         {/* Theme toggle */}
         <ThemeToggle />
       </nav>
 
       <div
-        className={`absolute h-screen top-0 left-0 items-center content-center flex flex-col bg-card gap-[20px] transition-all duration-300 z-[100] ${
+        className={`absolute h-screen w-screen top-0 left-0 transition-all duration-300 z-[100] bg-gradient-to-r from-card from-80% to-100% ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
-        style={{ width: `${sideMenuWidth}vw` }}
+        // style={{ width: `${sideMenuWidth}vw` }}
       >
         {/* Logo (only visible when menu is open) */}
-        <div
-          className={`flex justify-center items-center w-full px-[20px]`}
-          style={{ height: `${navbarHeight}px` }}
-        >
-          <Link
-            to="/"
-            className={`flex items-center justify-center w-min text-2xl`}
-            onClick={toggleMenu}
+        <div className="w-[80%] items-center content-center flex flex-col gap-[20px]">
+          <div
+            className={`flex justify-center items-center w-full px-[20px]`}
+            style={{ height: `${navbarHeight}px` }}
           >
-            <div className="font-bold">Apollo</div>
-            <div className="">Net</div>
-          </Link>
-        </div>
+            <Link
+              to="/"
+              className={`flex items-center justify-center w-min text-2xl`}
+              onClick={toggleMenu}
+            >
+              <div className="font-bold">React</div>
+              <div className="">Essentials</div>
+            </Link>
+          </div>
 
-        {/* Navigation links (only visible when menu is open) */}
-        {mainNav.map((navItem, index) => (
-          <Link
-            key={index}
-            to={navItem.href}
-            className={
-              location.pathname === navItem.href
-                ? "text-foreground w-min text-xl"
-                : "text-muted-foreground hover:text-foreground w-min text-xl"
-            }
-            target={navItem.external ? "_blank" : undefined}
-            onClick={toggleMenu}
-          >
-            {navItem.title}
-          </Link>
-        ))}
+          {/* Navigation links (only visible when menu is open) */}
+          {mainNav.map((navItem, index) => (
+            <Link
+              key={index}
+              to={navItem.href}
+              className={
+                location.pathname === navItem.href
+                  ? "text-foreground w-min text-xl"
+                  : "text-muted-foreground hover:text-foreground w-min text-xl"
+              }
+              target={navItem.external ? "_blank" : undefined}
+              onClick={toggleMenu}
+            >
+              {navItem.title}
+            </Link>
+          ))}
+        </div>
       </div>
     </>
   );
